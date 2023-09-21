@@ -1,18 +1,26 @@
-<?php 
+<?php
+
+namespace AssoConnect\Tests;
+
+use AssoConnect\LibphoneDOMTOM;
 
 /**
  *  @author Sylvain Fabre
  */
-class AssoConnectLibphoneDOMTOMTest extends PHPUnit_Framework_TestCase{
+class AssoConnectLibphoneDOMTOMTest extends \PHPUnit\Framework\TestCase
+{
 
 	/**
 	 * @covers AssoConnect\LibphoneDOMTOM::parse()
 	 * @dataProvider provider_parse
 	 */
-	public function test_parse(){
-
+	public function test_parse(string $input, string $output): void
+    {
+        self::assertSame($output, LibphoneDOMTOM::parse($input));
 	}
-	public function provider_parse(){
+
+	public function provider_parse(): iterable
+    {
 		return array(
 			// General French number
 			array('+33123456789',	'+33123456789'),
@@ -34,5 +42,4 @@ class AssoConnectLibphoneDOMTOMTest extends PHPUnit_Framework_TestCase{
 			array('+33596461234',	'+596596461234')
 		);
 	}
-
 }
